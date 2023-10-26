@@ -1,0 +1,9 @@
+{
+  "name": "api-scripts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@aion-dk/js-client": "3.1.0",
+    "dotenv": "^16.0.3"
+  }
+}
