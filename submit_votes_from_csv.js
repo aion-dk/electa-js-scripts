@@ -21,7 +21,7 @@ async function submitVotesCsvWithCodes(csvPath, electionCodeColumnIndicies, batc
 
     let lines = data.split(/\r?\n/)
     csvHeaders = lines.pop()
-    electionCodeColumnIndicies = electionCodeColumnIndicies.slice(",")
+    electionCodeColumnIndicies = electionCodeColumnIndicies.split(",")
     lines = lines.map(line => line.split(","))
 
     // If only specific voter groups should be targeted:
