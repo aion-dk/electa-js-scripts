@@ -7,10 +7,10 @@
  * - A voting round must be active
  */
 
-const { signIntoAPI, headers, getVoters, getVoterCsvWithCodes } = require("./generic")
-const { benchmark } = require("./benchmark");
-const { electionConferenceUrl, conferenceUrl, dbbBaseUrl, admin, boardSlug, votingRoundReference } = require("./variables")
-const { vote } = require("./vote");
+const { signIntoAPI, headers, getVoters, getVoterCsvWithCodes } = require("../utils/generic")
+const { benchmark } = require("../utils/benchmark");
+const { electionConferenceUrl, conferenceUrl, dbbBaseUrl, admin, boardSlug, votingRoundReference } = require("../utils/variables")
+const { vote } = require("../utils/vote");
 
 // Batch size is based on pagination of voters index.
 async function submitVotesByIndex(batches, batchStart = 1) {

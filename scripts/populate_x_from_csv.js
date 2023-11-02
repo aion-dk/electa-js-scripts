@@ -5,9 +5,9 @@
  * - variables.js has been populated with the required information
  */
 const fs = require("fs");
-const { signIntoAPI, createContest, createVoterGroup, headers, createOption, getContests} = require("./generic")
-const { benchmark } = require("./benchmark");
-const { electionConferenceUrl, conferenceUrl, admin } = require("./variables")
+const { signIntoAPI, createContest, createVoterGroup, headers, createOption, getContests} = require("../utils/generic")
+const { benchmark } = require("../utils/benchmark");
+const { electionConferenceUrl, conferenceUrl, admin } = require("../utils/variables")
 
 async function populateResourceFromCSV(resourceType, csvPath, batchStart = 0){
   let csvHeaders;

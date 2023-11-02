@@ -7,9 +7,9 @@
  * - A voting round must be active
  */
 
-const { benchmark } = require("./benchmark");
-const { dbbBaseUrl, boardSlug, votingRoundReference } = require("./variables")
-const { vote } = require("./vote");
+const { benchmark } = require("../utils/benchmark");
+const { dbbBaseUrl, boardSlug, votingRoundReference } = require("../utils/variables")
+const { vote } = require("../utils/vote");
 
 async function submitVotesCsvWithCodes(csvPath, electionCodeColumnIndicies, batches, batchSize = 1000, batchStart = 0) {
   let csvHeaders;
