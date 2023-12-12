@@ -24,9 +24,12 @@ async function vote(boardUrl, votingRoundReference, electionCodes) {
 }
 
 function dummyBallotSelection(ballotConfig, votingRoundConfig, contestConfigs) {
+  let availableContestReferences = ballotConfig.content.contestReferences
+      .filter(reference => votingRoundConfig.content.contestReferences.includes(reference))
+
   return {
     reference: ballotConfig.content.reference,
-    contestSelections: votingRoundConfig.content.contestReferences.map(cr => dummyContestSelection(contestConfigs[cr]))
+    contestSelections: availableContestReferences.map(cr => dummyContestSelection(contestConfigs[cr]))
   }
 }
 
