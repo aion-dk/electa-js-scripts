@@ -53,3 +53,4 @@ _Through local CSV with voter credentials_
 ```bash
 node submit_votes_from_csv.js csvPath electionCodeIndicies batches batchSize batchStart
 ```
+Note: The electionCodeIndicies should be comma separated

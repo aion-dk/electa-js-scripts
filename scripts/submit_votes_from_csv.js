@@ -10,6 +10,7 @@
 const { benchmark } = require("../utils/benchmark");
 const { dbbBaseUrl, boardSlug, votingRoundReference } = require("../utils/variables")
 const { vote } = require("../utils/vote");
+const fs = require("fs")
 
 async function submitVotesCsvWithCodes(csvPath, electionCodeColumnIndicies, batches, batchSize = 1000, batchStart = 0) {
   let csvHeaders;
@@ -20,7 +21,7 @@ async function submitVotesCsvWithCodes(csvPath, electionCodeColumnIndicies, batc
     }
 
     let lines = data.split(/\r?\n/)
-    csvHeaders = lines.pop()
+    csvHeaders = lines.shift()
     electionCodeColumnIndicies = electionCodeColumnIndicies.split(",")
     lines = lines.map(line => line.split(","))
 

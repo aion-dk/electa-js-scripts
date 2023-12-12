@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const dbbBaseUrl = process.env.DBB_URL
-let conferenceUrl = process.env.CONFERENCE_URL
+const conferenceUrl = process.env.CONFERENCE_URL
 const orgId = process.env.ORG_ID
 const electionId = process.env.ELECTION_ID
 const boardSlug = process.env.BOARD_SLUG
