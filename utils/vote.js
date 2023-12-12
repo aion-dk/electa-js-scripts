@@ -1,23 +1,32 @@
-module.exports = { vote}
+module.exports = { vote }
 
 const { AVClient } = require("@aion-dk/js-client");
 
 async function vote(boardUrl, votingRoundReference, electionCodes) {
-  const client = new AVClient(boardUrl);
-  await client.initialize();
-  client.generateProofOfElectionCodes(electionCodes)
-  await client.createVoterRegistration(votingRoundReference)
-  const { items: { contestConfigs } } = client.getLatestConfig()
-  const ballotConfig = client.getVoterBallotConfig()
-  const ballotSelection = dummyBallotSelection(ballotConfig, contestConfigs)
-  await client.constructBallot(ballotSelection)
-  await client.castBallot();
+  try {
+    const client = new AVClient(boardUrl);
+    await client.initialize();
+    client.generateProofOfElectionCodes(electionCodes)
+    await client.createVoterRegistration(votingRoundReference)
+    const { items: { contestConfigs, votingRoundConfigs } } = client.getLatestConfig()
+    const votingRoundConfig = votingRoundConfigs[votingRoundReference]
+    const ballotConfig = client.getVoterBallotConfig()
+    const ballotSelection = dummyBallotSelection(ballotConfig, votingRoundConfig, contestConfigs)
+    await client.constructBallot(ballotSelection)
+    await client.castBallot();
+  } catch(error) {
+     if(error.response?.data) {
+      return console.log(error.response.data)
+    } else {
+      throw error
+    }
+  }
 }
 
-function dummyBallotSelection(ballotConfig, contestConfigs) {
+function dummyBallotSelection(ballotConfig, votingRoundConfig, contestConfigs) {
   return {
     reference: ballotConfig.content.reference,
-    contestSelections: ballotConfig.content.contestReferences.map(cr => dummyContestSelection(contestConfigs[cr]))
+    contestSelections: votingRoundConfig.content.contestReferences.map(cr => dummyContestSelection(contestConfigs[cr]))
   }
 }
 
