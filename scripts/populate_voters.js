@@ -4,9 +4,9 @@
  * Site, organisation, trustees and an admin must be set up in Electa
  */
 
-const { signIntoAPI, createVoter, headers } = require("../../../functions/api/generic")
-const { benchmark } = require("../../../functions/api/benchmark");
-const { electionConferenceUrl, conferenceUrl, admin } = require("../../../scenarios/electa/loadtest/variables")
+const { signIntoAPI, createVoter, headers } = require("../utils/generic")
+const { benchmark } = require("../utils/benchmark");
+const { electionConferenceUrl, conferenceUrl, admin } = require("../utils/variables")
 
 async function populateVoters(voterBatches, votersPerBatch, voterGroupAmount, batchStart = 1){
   let signInJson = await signIntoAPI(conferenceUrl, admin)
@@ -17,7 +17,7 @@ async function populateVoters(voterBatches, votersPerBatch, voterGroupAmount, ba
   })
   let voterGroupsJson = await voterGroupsResponse.json()
 
-  await benchmark(`${voterBatches * votersPerBatch} voters took: `, async function() {
+  await benchmark(`${(voterBatches - batchStart) * votersPerBatch} voters took: `, async function() {
     for (let i = batchStart; i < voterBatches; i++) {
       let signInJson = await signIntoAPI(conferenceUrl, admin)
 
