@@ -4,9 +4,9 @@
  * Site, organisation, election, trustees and an admin must be set up in Electa
  */
 
-const { signIntoAPI, createOption, headers, getContests } = require("../../../functions/api/generic")
-const { benchmark } = require("../../../functions/api/benchmark");
-const { electionConferenceUrl, conferenceUrl, admin } = require("../../../scenarios/electa/loadtest/variables")
+const { signIntoAPI, createOption, headers, getContests } = require("../utils/generic")
+const { benchmark } = require("../utils/benchmark");
+const { electionConferenceUrl, conferenceUrl, admin } = require("../utils/variables")
 
 async function populateOptions(amountPerContest = null){
   let signInJson = await signIntoAPI(conferenceUrl, admin)

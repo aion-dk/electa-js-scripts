@@ -4,8 +4,8 @@
  * Site, organisation, trustees and an admin must be set up in Electa
  */
 
-const { signIntoAPI, headers, createVotingRound, getContests} = require("../../../functions/api/generic")
-const { electionConferenceUrl, conferenceUrl, admin } = require("../../../scenarios/electa/loadtest/variables")
+const { signIntoAPI, headers, createVotingRound, getContests} = require("../utils/generic")
+const { electionConferenceUrl, conferenceUrl, admin } = require("../utils/variables")
 
 
 async function populateVotingRound(contestAmount = 1000) {
