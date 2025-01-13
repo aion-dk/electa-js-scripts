@@ -34,13 +34,19 @@ function dummyBallotSelection(ballotConfig, votingRoundConfig, contestConfigs) {
 }
 
 function dummyContestSelection(contestConfig) {
+  let optionSelections = []
+  while(contestConfig.content.markingType.minMarks > optionSelections.length) {
+    let newSelection = { reference: contestConfig.content.options[getRandomArbitrary(0, contestConfig.content.options.length - 1)].reference }
+    if(!optionSelections.map(x => x.reference ).includes(newSelection.reference)) {
+      optionSelections.push(newSelection)
+    }
+  }
+
   return {
     reference: contestConfig.content.reference,
     piles: [{
       multiplier: 1,
-      optionSelections: [
-        { reference: contestConfig.content.options[getRandomArbitrary(0, contestConfig.content.options.length - 1)].reference }
-      ]
+      optionSelections: optionSelections
     }]
   }
 }
