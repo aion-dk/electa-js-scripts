@@ -38,6 +38,6 @@ async function populateVoters(voterBatches, votersPerBatch, voterGroupAmount, ba
 }
 
 const args = process.argv;
-let [voterBatches, votersPerBatch, voterGroupAmount, batchStart = 1] = args.slice(2).map(x => parseInt(x))
+let [voterBatches, votersPerBatch, voterGroupAmount = 1, batchStart = 1] = args.slice(2).map(x => parseInt(x))
 populateVoters(voterBatches, votersPerBatch, voterGroupAmount, batchStart)
 
