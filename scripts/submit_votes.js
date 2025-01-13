@@ -37,7 +37,7 @@ async function submitVotesByDownloadCsvWithCodes(batches, batchSize = 1000, batc
   console.log("Fetching voters...")
   // Reduce csv download size by querying by voter names - acts as LIKE "%name%"
   let query = {
-     "grid[name]": "A" // <--- Change this to use another voter segment based on name
+     // "grid[name]": "Demo" // <--- Change this to use another voter segment based on name
   }
   let voterCsvBlob = await getVoterCsvWithCodes(electionConferenceUrl, query, headers(signInJson.token))
 
