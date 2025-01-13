@@ -7,6 +7,11 @@ async function signIntoAPI(conferenceUrl, admin){
     headers: { "Content-Type": "application/json", "Accept": "application/json" }
   })
 
+  if(!signInResponse.ok) {
+    console.log(signInResponse.status, await signInResponse.json())
+    return
+  }
+
   return await signInResponse.json()
 }
 
